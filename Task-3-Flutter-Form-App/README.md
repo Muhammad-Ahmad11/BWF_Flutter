@@ -59,9 +59,3 @@ This Flutter application is a form app that allows users to enter details using 
 2. Fill out the form with the required details.
 3. Click the "Submit" button to validate the inputs.
 4. If all inputs are valid, the app will navigate to the display screen where the entered data is shown.
-
-### Display Screen
-![Display Screen](screenshots/display_screen.png)
-
-## Folder Structure
-
