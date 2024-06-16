@@ -1,16 +1,30 @@
-# personify
+# Personify
 
-A new Flutter project.
+Personify is a simple Flutter application that greets users with a personalized message. When provided with a name, it responds by saying "Hey" followed by the name, making it a friendly and welcoming app.
+
+## Features
+
+- **Personalized Greeting**: Tthe app will greet the person with a "Hey" followed by their name.
+- **Simple and Intuitive**: Designed with simplicity in mind, making it easy to use and understand.
+- **Cross-Platform**: Built with Flutter, so it works on both Android and iOS.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- [Flutter](https://flutter.dev/docs/get-started/install) installed on your machine.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/Muhammad-Ahmad11/Bytewise/BWT-02-Personify-.git
+   cd BWT-02-Personify-
+
+2. **Install Dependencies**:
+   ```sh
+   flutter pub get
+
+3. **Run the App**:
+   ```sh
+   flutter run
