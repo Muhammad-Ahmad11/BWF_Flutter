@@ -32,7 +32,7 @@ This Flutter application is a form app that allows users to enter details using 
 2. Clone this repository:
 
     ```sh
-    git clone https://github.com/Muhammad-Ahmad11/BWF-Flutter/Task-3-Flutter-Form-App.git   
+    git clone https://github.com/Muhammad-Ahmad11/BWF-Flutter/task_3_ten_widgets_and_navigation.git   
     ```
 
 3. Navigate to the project directory:
