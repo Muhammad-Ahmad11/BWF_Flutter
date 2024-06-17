@@ -18,7 +18,7 @@ Personify is a simple Flutter application that greets users with a personalized 
 
 1. **Clone the Repository**:
    ```sh
-   git clone https://github.com/Muhammad-Ahmad11/BWF-Flutter/Task-2-Flutter-First-App.git
+   git clone https://github.com/Muhammad-Ahmad11/BWF-Flutter/task_2_first_app.git
    cd Task-2-Flutter-First-App
 
 2. **Install Dependencies**:
