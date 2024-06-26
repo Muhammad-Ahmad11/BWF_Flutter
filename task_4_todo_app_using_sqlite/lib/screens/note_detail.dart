@@ -5,37 +5,33 @@ import 'package:task_4_todo_app_using_sqlite/utils/database_helper.dart';
 import 'package:intl/intl.dart';
 
 class NoteDetail extends StatefulWidget {
-  final String appBarTitle;
-  final Note note;
+  final Note? note;
 
-  NoteDetail(this.note, this.appBarTitle);
+  const NoteDetail({super.key, this.note});
 
   @override
-  State<StatefulWidget> createState() {
-    return NoteDetailState(this.note, this.appBarTitle);
-  }
+  State<NoteDetail> createState() => _NoteDetailState();
 }
 
-class NoteDetailState extends State<NoteDetail> {
-  static var _priorities = ['High', 'Low'];
+class _NoteDetailState extends State<NoteDetail> {
+  var _selectedStatus = 'Low';
 
   DatabaseHelper helper = DatabaseHelper();
-
-  String appBarTitle;
-  Note note;
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  NoteDetailState(this.note, this.appBarTitle);
+  @override
+  void initState() {
+    if (widget.note != null) {
+      titleController.text = widget.note!.title!;
+      descriptionController.text = widget.note!.description!;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    //TextStyle textStyle = Theme.of(context).textTheme.title;
-
-    titleController.text = note.title;
-    descriptionController.text = note.description;
-
     return WillPopScope(
         onWillPop: () async {
           // Ensure the method returns a Future<bool>
@@ -44,7 +40,7 @@ class NoteDetailState extends State<NoteDetail> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text(appBarTitle),
+            title: Text(widget.note == null ? "Add Note" : "Edit Note"),
             leading: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
@@ -58,20 +54,20 @@ class NoteDetailState extends State<NoteDetail> {
                 // First element
                 ListTile(
                   title: DropdownButton<String>(
-                      items: _priorities.map((String dropDownStringItem) {
-                        return DropdownMenuItem<String>(
-                          value: dropDownStringItem,
-                          child: Text(dropDownStringItem),
-                        );
-                      }).toList(),
-                      //style: textStyle,
-                      value: getPriorityAsString(note.priority),
-                      onChanged: (valueSelectedByUser) {
-                        setState(() {
-                          debugPrint('User selected $valueSelectedByUser');
-                          updatePriorityAsInt(valueSelectedByUser as String);
-                        });
-                      }),
+                    value: _selectedStatus,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedStatus = newValue!;
+                      });
+                    },
+                    items: <String>['Low', 'High']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
                 ),
 
                 // Second Element
@@ -175,45 +171,50 @@ class NoteDetailState extends State<NoteDetail> {
   void updatePriorityAsInt(String value) {
     switch (value) {
       case 'High':
-        note.priority = 1;
+        widget.note!.priority = 1;
         break;
       case 'Low':
-        note.priority = 2;
+        widget.note!.priority = 2;
         break;
     }
-  }
-
-  String getPriorityAsString(int value) {
-    String priority = _priorities[1];
-    switch (value) {
-      case 1:
-        priority = _priorities[0]; // 'High'
-        break;
-      case 2:
-        priority = _priorities[1]; // 'Low'
-        break;
-    }
-    return priority;
   }
 
   void updateTitle() {
-    note.title = titleController.text;
+    print(titleController.text);
+    widget.note!.title = titleController.text;
+    print(widget.note!.title);
   }
 
   void updateDescription() {
-    note.description = descriptionController.text;
+    widget.note!.description = descriptionController.text;
   }
 
   void _save() async {
     moveToLastScreen();
 
-    note.date = DateFormat.yMMMd().format(DateTime.now());
+    var date = DateFormat.yMMMd().format(DateTime.now());
     int result;
-    if (note.id != null) {
+    if (widget.note != null) {
       // Case 1: Update operation
+      print("update");
+      Note note = Note(
+        id: 1,
+        title: titleController.text,
+        description: descriptionController.text,
+        date: date.toString(),
+        priority: _selectedStatus == 'High' ? 2 : 1,
+      );
       result = await helper.updateNote(note);
     } else {
       // Case 2: Insert Operation
+      print("insert");
+      Note note = Note(
+        id: 1,
+        title: titleController.text,
+        description: descriptionController.text,
+        date: date.toString(),
+        priority: _selectedStatus == 'High' ? 2 : 1,
+      );
       result = await helper.insertNote(note);
     }
 
@@ -231,13 +232,13 @@ class NoteDetailState extends State<NoteDetail> {
 
     // Case 1: If user is trying to delete the NEW NOTE i.e. he has come to
     // the detail page by pressing the FAB of NoteList page.
-    if (note.id == null) {
+    if (widget.note!.id == null) {
       _showAlertDialog('Status', 'No Note was deleted');
       return;
     }
 
     // Case 2: User is trying to delete the old note that already has a valid ID.
-    int result = await helper.deleteNote(note.id);
+    int result = await helper.deleteNote(widget.note!.id!);
     if (result != 0) {
       _showAlertDialog('Status', 'Note Deleted Successfully');
     } else {

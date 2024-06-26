@@ -60,14 +60,14 @@ class DatabaseHelper {
   // Insert Operation: Insert a Note object to database
   Future<int> insertNote(Note note) async {
     Database db = await this.database;
-    var result = await db.insert(noteTable, note.toMap());
+    var result = await db.insert(noteTable, note.toJson());
     return result;
   }
 
   // Update Operation: Update a Note object and save it to database
   Future<int> updateNote(Note note) async {
     var db = await this.database;
-    var result = await db.update(noteTable, note.toMap(),
+    var result = await db.update(noteTable, note.toJson(),
         where: '$colId = ?', whereArgs: [note.id]);
     return result;
   }
@@ -99,7 +99,7 @@ class DatabaseHelper {
     List<Note> noteList = [];
     // For loop to create a 'Note List' from a 'Map List'
     for (int i = 0; i < count; i++) {
-      noteList.add(Note.fromMapObject(noteMapList[i]));
+      noteList.add(Note.fromJson(noteMapList[i]));
     }
 
     return noteList;

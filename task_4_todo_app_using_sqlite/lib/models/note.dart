@@ -1,67 +1,45 @@
 class Note {
-  int _id = 0;
-  String _title = "";
-  String _description = "";
-  String _date = "";
-  int _priority = 0;
+  final int? id;
+  String? title;
+  String? description;
+  String? date;
+  int? priority;
 
-  Note(this._title, this._date, this._priority, this._description);
+  Note({this.id, this.title, this.description, this.date, this.priority});
 
-  Note.withId(
-      this._id, this._title, this._date, this._priority, this._description);
+  factory Note.fromJson(Map<String, dynamic> json) {
+    return Note(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      date: json['date'],
+      priority: json['priority'],
+    );
+  }
 
-  int get id => _id;
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'date': date,
+      'priority': priority,
+    };
+  }
 
-  String get title => _title;
-
-  String get description => _description;
-
-  int get priority => _priority;
-
-  String get date => _date;
-
-  set title(String newTitle) {
-    if (newTitle.length <= 255) {
-      this._title = newTitle;
+  void updateNote(String newNote) {
+    if (newNote.length <= 255) {
+      title = newNote;
     }
   }
 
-  set description(String newDescription) {
-    if (newDescription.length <= 255) {
-      this._description = newDescription;
-    }
-  }
+  // void updateStatus(String newStatus) {
+  //   if (newStatus == 'Pending' || newStatus == 'Completed') {
+  //     description = newStatus;
+  //   }
+  // }
 
-  set priority(int newPriority) {
-    if (newPriority >= 1 && newPriority <= 2) {
-      this._priority = newPriority;
-    }
-  }
-
-  set date(String newDate) {
-    this._date = newDate;
-  }
-
-  // Convert a Note object into a Map object
-  Map<String, dynamic> toMap() {
-    var map = Map<String, dynamic>();
-    if (id != null) {
-      map['id'] = _id;
-    }
-    map['title'] = _title;
-    map['description'] = _description;
-    map['priority'] = _priority;
-    map['date'] = _date;
-
-    return map;
-  }
-
-  // Extract a Note object from a Map object
-  Note.fromMapObject(Map<String, dynamic> map) {
-    this._id = map['id'];
-    this._title = map['title'];
-    this._description = map['description'];
-    this._priority = map['priority'];
-    this._date = map['date'];
+  void updateDate(String newDate) {
+    date = newDate;
   }
 }
