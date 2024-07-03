@@ -14,7 +14,8 @@ class NoteDetail extends StatefulWidget {
 }
 
 class _NoteDetailState extends State<NoteDetail> {
-  var _selectedStatus = 'Low';
+  var _selectedPriority = 'Low';
+  var _currentStatus = 'Pending';
 
   DatabaseHelper helper = DatabaseHelper();
 
@@ -51,23 +52,50 @@ class _NoteDetailState extends State<NoteDetail> {
             padding: EdgeInsets.only(top: 15.0, left: 10.0, right: 10.0),
             child: ListView(
               children: <Widget>[
-                // First element
-                ListTile(
-                  title: DropdownButton<String>(
-                    value: _selectedStatus,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedStatus = newValue!;
-                      });
-                    },
-                    items: <String>['Low', 'High']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
+                Row(
+                  children: <Widget>[
+                    // First element
+                    Expanded(
+                      child: ListTile(
+                        title: DropdownButton<String>(
+                          value: _selectedPriority,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedPriority = newValue!;
+                            });
+                          },
+                          items: <String>['Low', 'High']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+
+                    // Status
+                    Expanded(
+                      child: ListTile(
+                        title: DropdownButton<String>(
+                          value: _currentStatus,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _currentStatus = newValue!;
+                            });
+                          },
+                          items: <String>['Pending', 'Completed']
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
 
                 // Second Element
@@ -194,27 +222,39 @@ class _NoteDetailState extends State<NoteDetail> {
 
     var date = DateFormat.yMMMd().format(DateTime.now());
     int result;
+
+    // Create a Note object
+    Note note = Note(
+      id: widget.note
+          ?.id, // Use existing id if updating, otherwise it will be null for new notes
+      title: titleController.text,
+      description: descriptionController.text,
+      date: date.toString(),
+      priority: _selectedPriority == 'High' ? 2 : 1,
+      status: _currentStatus == 'Pending' ? 'Pending' : 'Completed',
+    );
+
     if (widget.note != null) {
       // Case 1: Update operation
       print("update");
-      Note note = Note(
+      /*Note note = Note(
         id: 1,
         title: titleController.text,
         description: descriptionController.text,
         date: date.toString(),
         priority: _selectedStatus == 'High' ? 2 : 1,
-      );
+      );*/
       result = await helper.updateNote(note);
     } else {
       // Case 2: Insert Operation
       print("insert");
-      Note note = Note(
+      /*Note note = Note(
         id: 1,
         title: titleController.text,
         description: descriptionController.text,
         date: date.toString(),
         priority: _selectedStatus == 'High' ? 2 : 1,
-      );
+      );*/
       result = await helper.insertNote(note);
     }
 

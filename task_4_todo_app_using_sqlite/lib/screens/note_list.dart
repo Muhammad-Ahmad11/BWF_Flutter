@@ -27,9 +27,16 @@ class NoteListState extends State<NoteList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notes'),
+        title: Text(
+          'Notes',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 1, 75, 136),
       ),
       body: getNoteListView(),
+      backgroundColor: const Color.fromARGB(255, 15, 115, 197),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           debugPrint('FAB clicked');
@@ -60,14 +67,26 @@ class NoteListState extends State<NoteList> {
           color: Colors.white,
           elevation: 2.0,
           child: ListTile(
-            // leading: CircleAvatar(
-            //   backgroundColor:
-            //       getPriorityColor(this.noteList[position].priority),
-            //   child: getPriorityIcon(this.noteList[position].priority),
-            // ),
-            title: Text(
-              noteList[position].title!,
-              style: titleStyle,
+            leading: CircleAvatar(
+              backgroundColor:
+                  getPriorityColor(this.noteList[position].priority),
+              child: getPriorityIcon(this.noteList[position].priority),
+            ),
+            title: Row(
+              children: [
+                Text(
+                  noteList[position].title!,
+                  style: titleStyle,
+                ),
+                Text(
+                  ' • ',
+                  style: TextStyle(fontStyle: FontStyle.normal),
+                ),
+                Text(
+                  noteList[position].status!,
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 10),
+                )
+              ],
             ),
             subtitle: Text(noteList[position].date!),
             trailing: GestureDetector(
@@ -101,13 +120,13 @@ class NoteListState extends State<NoteList> {
   }
 
   // Returns the priority color
-  Color getPriorityColor(int priority) {
+  Color getPriorityColor(int? priority) {
     switch (priority) {
       case 1:
-        return Colors.red;
+        return Colors.yellow;
         break;
       case 2:
-        return Colors.yellow;
+        return Colors.red;
         break;
 
       default:
@@ -116,7 +135,7 @@ class NoteListState extends State<NoteList> {
   }
 
   // Returns the priority icon
-  Icon getPriorityIcon(int priority) {
+  Icon getPriorityIcon(int? priority) {
     switch (priority) {
       case 1:
         return Icon(Icons.play_arrow);

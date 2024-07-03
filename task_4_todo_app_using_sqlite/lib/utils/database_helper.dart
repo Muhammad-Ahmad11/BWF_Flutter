@@ -14,6 +14,7 @@ class DatabaseHelper {
   String colDescription = 'description';
   String colPriority = 'priority';
   String colDate = 'date';
+  String colStatus = 'status';
 
   DatabaseHelper._createInstance(); // Named constructor to create instance of DatabaseHelper
 
@@ -37,22 +38,27 @@ class DatabaseHelper {
     String path = directory.path + 'notes.db';
 
     // Open/create the database
-    var notesDatabase =
-        await openDatabase(path, version: 1, onCreate: _createDb);
+    var notesDatabase = await openDatabase(path,
+        version: 2, onCreate: _createDb, onUpgrade: _upgradeDb);
     return notesDatabase;
   }
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
-        '$colDescription TEXT, $colPriority INTEGER, $colDate TEXT)');
+        'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, $colDescription TEXT, $colPriority INTEGER, $colDate TEXT, $colStatus TEXT)');
+  }
+
+  void _upgradeDb(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Adding the new column to the existing table
+      await db.execute('ALTER TABLE $noteTable ADD COLUMN $colStatus TEXT');
+    }
   }
 
   // Fetch Operation: Get all note objects from database
   Future<List<Map<String, dynamic>>> getNoteMapList() async {
     Database db = await this.database;
 
-//		var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = await db.query(noteTable, orderBy: '$colPriority ASC');
     return result;
   }
