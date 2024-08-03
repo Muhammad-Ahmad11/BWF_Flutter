@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">150558134205</string>
+    <string name="google_api_key" translatable="false">AIzaSyCe6V1EA4PESCG0otQW-CePwXd4-gv5SOY</string>
+    <string name="google_app_id" translatable="false">1:150558134205:android:ea1d789c546d305f9b8cd4</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCe6V1EA4PESCG0otQW-CePwXd4-gv5SOY</string>
+    <string name="google_storage_bucket" translatable="false">ephamarcyapp.appspot.com</string>
+    <string name="project_id" translatable="false">ephamarcyapp</string>
+</resources>

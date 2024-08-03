@@ -18,11 +18,11 @@ class _LoginPageState extends State<LoginPage> {
 
   Future signIn() async {
     // loading circle
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Center(child: CircularProgressIndicator());
-        });
+    // showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return Center(child: CircularProgressIndicator());
+    //     });
 
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailController.text.trim(),
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
 
     // pop the loading circle
     // ignore: use_build_context_synchronously
-    Navigator.of(context).pop();
+    //Navigator.of(context).pop();
   }
 
   @override

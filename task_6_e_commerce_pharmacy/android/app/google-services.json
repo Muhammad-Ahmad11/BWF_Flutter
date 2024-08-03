@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "540176132039",
+    "project_id": "epharmacy-c13ef",
+    "storage_bucket": "epharmacy-c13ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540176132039:android:7676de9360c316ecc6dbe2",
+        "android_client_info": {
+          "package_name": "com.example.ephamarcy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhbLLlQou-ctpp0gUKi8mAGTTTWibjbQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

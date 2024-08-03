@@ -21,6 +21,7 @@ class _NoteDetailState extends State<NoteDetail> {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  
 
   @override
   void initState() {
