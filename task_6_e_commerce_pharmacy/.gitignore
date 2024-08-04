@@ -1,2 +1,6 @@
 task_6_e_commerce_pharmacy/build/app/outputs/apk/debug/app-debug.apk
 task_6_e_commerce_pharmacy/.dart_tool/flutter_build/
+*.apk
+*.dill
+build/
+.dart_tool/
