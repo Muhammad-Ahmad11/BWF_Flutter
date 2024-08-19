@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1020750687788",
+    "project_id": "bitebuddy-f67ea",
+    "storage_bucket": "bitebuddy-f67ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020750687788:android:57ce099feab085cc56ab89",
+        "android_client_info": {
+          "package_name": "com.example.food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020750687788-bqbu95mg6n92ati24gar8igpjanqvbsf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_app",
+            "certificate_hash": "b8d6981ee16b86a9d219aece245e1a0493a861e5"
+          }
+        },
+        {
+          "client_id": "1020750687788-8ivt4pmok80ga99ubv4ino3orsgdokf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNMOGwXRgz-0DwCZPCuyKUJbFJcX0c4W4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020750687788-8ivt4pmok80ga99ubv4ino3orsgdokf8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1020750687788-035t28koqrt3jclm787p42puj3o55i5n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
