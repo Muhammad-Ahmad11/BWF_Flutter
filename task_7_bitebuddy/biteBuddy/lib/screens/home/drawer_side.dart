@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/config/colors.dart';
-import 'package:food_app/providers/user_provider.dart';
+import 'package:food_app/theme/colors.dart';
+import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:food_app/screens/home/home_screen.dart';
 import 'package:food_app/screens/my_profile/my_profile.dart';
 //packages
@@ -9,7 +9,8 @@ import 'package:food_app/screens/my_profile/my_profile.dart';
 
 class DrawerSide extends StatefulWidget {
   UserProvider userProvider;
-  DrawerSide({required this.userProvider});
+
+  DrawerSide({Key? key, required this.userProvider}) : super(key: key);
   @override
   _DrawerSideState createState() => _DrawerSideState();
 }
@@ -20,10 +21,7 @@ class _DrawerSideState extends State<DrawerSide> {
       height: 50,
       child: ListTile(
         onTap: onTap,
-        leading: Icon(
-          iconData,
-          size: 28,
-        ),
+        leading: Icon(iconData, size: 28),
         title: Text(
           title!,
           style: TextStyle(color: textColor),

@@ -2,18 +2,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:food_app/providers/user_provider.dart';
+import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:food_app/screens/home/home_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
+
   @override
   _SignInState createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
   UserProvider? userProvider;
+
   Future<User?> _googleSignUp() async {
     try {
       final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -54,7 +57,7 @@ class _SignInState extends State<SignIn> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.cover, image: AssetImage('assets/background.png')),
+              fit: BoxFit.cover, image: AssetImage('assets/background2.png')),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +68,6 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Sign in to contunue'),
                   Text(
                     'BiteBuddy',
                     style:
@@ -79,14 +81,30 @@ class _SignInState extends State<SignIn> {
                   ),
                   Column(
                     children: [
-                      SignInButton(
-                        Buttons.Apple,
-                        text: "Sign in with Apple",
+                      // Replace with custom button for styling
+                      ElevatedButton(
                         onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[800], // Background color
+                          foregroundColor: Colors.white, // Text color
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(30), // Rounded edges
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 15), // Button padding
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.apple, color: Colors.white),
+                            SizedBox(width: 10),
+                            Text('Sign in with Apple'),
+                          ],
+                        ),
                       ),
-                      SignInButton(
-                        Buttons.Google,
-                        text: "Sign in with Google",
+                      SizedBox(height: 10),
+                      ElevatedButton(
                         onPressed: () async {
                           await _googleSignUp().then(
                             (value) => Navigator.of(context).pushReplacement(
@@ -96,6 +114,29 @@ class _SignInState extends State<SignIn> {
                             ),
                           );
                         },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Colors.grey[800], // Background color for Google
+                          foregroundColor: Colors.white, // Text color
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(30), // Rounded edges
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 15), // Button padding
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Image.asset(
+                              'assets/google_logo.png', // Path to Google logo
+                              height: 24,
+                              width: 24,
+                            ),
+                            SizedBox(width: 10),
+                            Text('Sign in with Google'),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -108,7 +149,7 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       Text(
-                        'Terms and Pricacy Policy',
+                        'Terms and Privacy Policy',
                         style: TextStyle(
                           color: Colors.grey[800],
                         ),

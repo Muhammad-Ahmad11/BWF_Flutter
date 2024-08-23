@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/config/colors.dart';
-import 'package:food_app/providers/user_provider.dart';
+import 'package:food_app/theme/colors.dart';
+import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'drawer_side.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

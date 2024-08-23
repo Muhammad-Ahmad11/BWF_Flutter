@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/config/colors.dart';
+import 'package:food_app/theme/colors.dart';
 import 'package:food_app/models/user_model.dart';
-import 'package:food_app/providers/user_provider.dart';
+import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:food_app/screens/home/drawer_side.dart';
 
 class MyProfile extends StatefulWidget {
   UserProvider userProvider;
-  MyProfile({required this.userProvider});
+
+  MyProfile({Key? key, required this.userProvider}) : super(key: key);
 
   @override
   _MyProfileState createState() => _MyProfileState();
