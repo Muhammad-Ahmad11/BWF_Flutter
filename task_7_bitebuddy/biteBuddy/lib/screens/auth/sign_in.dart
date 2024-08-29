@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/theme/colors.dart';
 import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:food_app/screens/home/home_screen.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -52,12 +53,13 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: Container(
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              fit: BoxFit.cover, image: AssetImage('assets/background2.png')),
+              fit: BoxFit.cover, image: AssetImage('assets/background.png')),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -56,7 +56,7 @@ class _WishListState extends State<WishList> {
     wishListProvider!.getWishtListData();
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "WishList",
           style: TextStyle(color: textColor, fontSize: 18),
         ),

@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
         userProvider: userProvider,
       ),
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: primaryColor,
         iconTheme: IconThemeData(color: textColor),
         title: Text(
           'Home',
@@ -281,9 +281,9 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('assets/bannerx.jpg'),
+                  image: AssetImage('assets/banner.png'),
                 ),
-                color: Colors.teal,
+                color: secondaryColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
@@ -299,7 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 52,
                             width: 100,
                             decoration: const BoxDecoration(
-                              color: Colors.black,
+                              color: textColor,
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(50),
                                 bottomLeft: Radius.circular(50),
