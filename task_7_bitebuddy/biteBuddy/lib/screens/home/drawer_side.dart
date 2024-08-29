@@ -10,14 +10,14 @@ import 'package:food_app/screens/my_profile/my_profile.dart';
 class DrawerSide extends StatefulWidget {
   UserProvider userProvider;
 
-  DrawerSide({Key? key, required this.userProvider}) : super(key: key);
+  DrawerSide({super.key, required this.userProvider});
   @override
   _DrawerSideState createState() => _DrawerSideState();
 }
 
 class _DrawerSideState extends State<DrawerSide> {
   Widget listTile({String? title, IconData? iconData, Function()? onTap}) {
-    return Container(
+    return SizedBox(
       height: 50,
       child: ListTile(
         onTap: onTap,
@@ -55,7 +55,7 @@ class _DrawerSideState extends State<DrawerSide> {
                         radius: 40,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Column(
@@ -66,7 +66,7 @@ class _DrawerSideState extends State<DrawerSide> {
                         Text(
                           userData.userEmail!,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 13,
                           ),
                         ),
@@ -82,7 +82,7 @@ class _DrawerSideState extends State<DrawerSide> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
               },
@@ -127,8 +127,8 @@ class _DrawerSideState extends State<DrawerSide> {
             listTile(iconData: Icons.format_quote_outlined, title: "FAQs"),
             Container(
               height: 350,
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Contact Support"),

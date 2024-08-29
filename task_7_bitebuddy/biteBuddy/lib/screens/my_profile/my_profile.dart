@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/theme/colors.dart';
-import 'package:food_app/models/user_model.dart';
 import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:food_app/screens/home/drawer_side.dart';
 
 class MyProfile extends StatefulWidget {
   UserProvider userProvider;
 
-  MyProfile({Key? key, required this.userProvider}) : super(key: key);
+  MyProfile({super.key, required this.userProvider});
 
   @override
   _MyProfileState createState() => _MyProfileState();
 }
 
 class _MyProfileState extends State<MyProfile> {
-  @override
   Widget listTile({IconData? icon, String? title}) {
     return Column(
       children: [
-        Divider(
+        const Divider(
           height: 1,
         ),
         ListTile(
           leading: Icon(icon),
           title: Text(title!),
-          trailing: Icon(Icons.arrow_forward_ios),
+          trailing: const Icon(Icons.arrow_forward_ios),
         )
       ],
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     var userData = widget.userProvider.currentUserData;
 
@@ -58,16 +57,18 @@ class _MyProfileState extends State<MyProfile> {
                 color: lightGreyBackground,
               ),
               Container(
-                height: 548,
+                //height: 548,
+                height: 658,
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 decoration: BoxDecoration(
                   color: bannerColor,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+                    //bottomLeft: Radius.circular(30),
+                    //bottomRight: Radius.circular(30),
                   ),
                 ),
                 child: ListView(
@@ -77,8 +78,8 @@ class _MyProfileState extends State<MyProfile> {
                       children: [
                         Container(
                           width: 250,
-                          height: 80,
-                          padding: EdgeInsets.only(left: 20),
+                          height: 70,
+                          padding: const EdgeInsets.only(left: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -93,7 +94,7 @@ class _MyProfileState extends State<MyProfile> {
                                         fontWeight: FontWeight.bold,
                                         color: textColor),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Text(userData.userEmail!),
@@ -104,11 +105,11 @@ class _MyProfileState extends State<MyProfile> {
                                 backgroundColor: textColor,
                                 child: CircleAvatar(
                                   radius: 15,
+                                  backgroundColor: scaffoldBackgroundColor,
                                   child: Icon(
                                     Icons.edit,
                                     color: textColor,
                                   ),
-                                  backgroundColor: scaffoldBackgroundColor,
                                 ),
                               )
                             ],
