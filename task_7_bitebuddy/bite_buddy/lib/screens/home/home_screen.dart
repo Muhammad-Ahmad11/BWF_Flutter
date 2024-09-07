@@ -317,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           '30% Off',
                           style: TextStyle(
                               fontSize: 40,

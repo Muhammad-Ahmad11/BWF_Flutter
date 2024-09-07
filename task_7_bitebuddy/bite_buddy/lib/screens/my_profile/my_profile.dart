@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/auth/sign_in.dart';
+import 'package:food_app/screens/review_cart/review_cart.dart';
 import 'package:food_app/theme/colors.dart';
 import 'package:food_app/viewmodels/providers/user_provider.dart';
 import 'package:food_app/screens/home/drawer_side.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class MyProfile extends StatefulWidget {
   UserProvider userProvider;
@@ -13,6 +17,22 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
+  Future<void> _signOut() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      await FirebaseAuth.instance.signOut();
+      await googleSignIn.signOut();
+
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const SignIn()),
+      );
+    } catch (e) {
+      // ignore: avoid_print
+      print("Error signing out: $e");
+    }
+  }
+
   Widget listTile({IconData? icon, String? title}) {
     return Column(
       children: [
@@ -42,6 +62,7 @@ class _MyProfileState extends State<MyProfile> {
           style: TextStyle(
             fontSize: 18,
             color: textColor,
+            fontStyle: FontStyle.normal,
           ),
         ),
       ),
@@ -76,10 +97,9 @@ class _MyProfileState extends State<MyProfile> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 250,
                           height: 70,
-                          padding: const EdgeInsets.only(left: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -100,24 +120,25 @@ class _MyProfileState extends State<MyProfile> {
                                   Text(userData.userEmail!),
                                 ],
                               ),
-                              CircleAvatar(
-                                radius: 15,
-                                backgroundColor: textColor,
-                                child: CircleAvatar(
-                                  radius: 15,
-                                  backgroundColor: scaffoldBackgroundColor,
-                                  child: const Icon(
-                                    Icons.edit,
-                                    color: textColor,
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         ),
                       ],
                     ),
-                    listTile(icon: Icons.shop_outlined, title: "My Orders"),
+                    const SizedBox(height: 25),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ReviewCart(),
+                          ),
+                        );
+                      },
+                      child: const ListTile(
+                        leading: Icon(Icons.shop_outlined),
+                        title: Text("My Orders"),
+                      ),
+                    ),
                     listTile(
                         icon: Icons.location_on_outlined,
                         title: "My Delivery Address"),
@@ -127,15 +148,29 @@ class _MyProfileState extends State<MyProfile> {
                     listTile(
                         icon: Icons.policy_outlined, title: "Privacy Policy"),
                     listTile(icon: Icons.add_chart, title: "About"),
-                    listTile(
-                        icon: Icons.exit_to_app_outlined, title: "Log Out"),
+                    GestureDetector(
+                      onTap: () async {
+                        await _signOut();
+                      },
+                      child: const ListTile(
+                        leading: Icon(Icons.exit_to_app_outlined),
+                        title: Text("Log Out"),
+                      ),
+                    ),
+                    // listTile(
+                    //   icon: Icons.exit_to_app_outlined,
+                    //   title: "Log Out",
+                    //   onTap: () async {
+                    //     await _signOut();
+                    //   },
+                    // ),
                   ],
                 ),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40, left: 30),
+            padding: const EdgeInsets.only(top: 90, left: 30),
             child: CircleAvatar(
               radius: 50,
               backgroundColor: Colors.white,
@@ -145,7 +180,7 @@ class _MyProfileState extends State<MyProfile> {
                         "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
                   ),
                   radius: 45,
-                  backgroundColor: scaffoldBackgroundColor),
+                  backgroundColor: Colors.white),
             ),
           )
         ],
