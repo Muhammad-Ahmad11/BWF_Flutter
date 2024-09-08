@@ -144,13 +144,13 @@ class _SignInState extends State<SignIn> {
                   Column(
                     children: [
                       Text(
-                        'By signing in you are agreeing to our',
+                        'By signing in, you agree to our',
                         style: TextStyle(
                           color: Colors.grey[800],
                         ),
                       ),
                       Text(
-                        'Terms and Privacy Policy',
+                        ' Terms of Service and Privacy Policy.',
                         style: TextStyle(
                           color: Colors.grey[800],
                         ),

@@ -98,19 +98,19 @@ class _SingleItemState extends State<SingleItem> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           ListTile(
-                                            title: const Text('50 Gram'),
+                                            title: const Text('Small'),
                                             onTap: () {
                                               Navigator.pop(context);
                                             },
                                           ),
                                           ListTile(
-                                            title: const Text('500 Gram'),
+                                            title: const Text('Medium'),
                                             onTap: () {
                                               Navigator.pop(context);
                                             },
                                           ),
                                           ListTile(
-                                            title: const Text('1 Kg'),
+                                            title: const Text('Large'),
                                             onTap: () {
                                               Navigator.pop(context);
                                             },
@@ -132,7 +132,7 @@ class _SingleItemState extends State<SingleItem> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        "50 Gram",
+                                        "Small",
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 14,

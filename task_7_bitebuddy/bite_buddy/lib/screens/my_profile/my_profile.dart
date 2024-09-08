@@ -58,12 +58,9 @@ class _MyProfileState extends State<MyProfile> {
         backgroundColor: primaryColor,
         elevation: 0.0,
         title: const Text(
-          "My Profile",
+          'My Profile',
           style: TextStyle(
-            fontSize: 18,
-            color: textColor,
-            fontStyle: FontStyle.normal,
-          ),
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
       drawer: DrawerSide(

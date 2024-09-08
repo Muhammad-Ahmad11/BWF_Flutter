@@ -42,8 +42,9 @@ class _PaymentSummaryState extends State<PaymentSummary> {
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text(
-          "Payment Summary",
-          style: TextStyle(fontSize: 18),
+          'Payment Details',
+          style: TextStyle(
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
       bottomNavigationBar: ListTile(
@@ -75,7 +76,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
               borderRadius: BorderRadius.circular(30),
             ),
             child: const Text(
-              "Pleace Order",
+              "Place Order",
               style: TextStyle(
                 color: textColor,
               ),
@@ -92,7 +93,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
               children: [
                 SingleDeliveryItem(
                   address:
-                      "aera, ${widget.deliverAddressList.aera}, street, ${widget.deliverAddressList.street}, society ${widget.deliverAddressList.scoirty}, pincode ${widget.deliverAddressList.pinCode}",
+                      "Area: ${widget.deliverAddressList.aera}, Street: ${widget.deliverAddressList.street}, Society: ${widget.deliverAddressList.scoirty}, PinCode: ${widget.deliverAddressList.pinCode}",
                   title:
                       "${widget.deliverAddressList.firstName} ${widget.deliverAddressList.lastName}",
                   number: widget.deliverAddressList.mobileNo,
@@ -107,7 +108,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 const Divider(),
                 ExpansionTile(
                   title: Text(
-                      "Order Items ${reviewCartProvider.getReviewCartDataList.length}"),
+                      "Ordered Items ${reviewCartProvider.getReviewCartDataList.length}"),
                   children: reviewCartProvider.getReviewCartDataList.map((e) {
                     return OrderItem(
                       e: e,
@@ -133,7 +134,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 ListTile(
                   minVerticalPadding: 5,
                   leading: Text(
-                    "Shipping Charge",
+                    "Shipping Charges",
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   trailing: Text(
@@ -146,7 +147,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 ListTile(
                   minVerticalPadding: 5,
                   leading: Text(
-                    "Compen Discount",
+                    "Coupon Discount",
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                   trailing: const Text(
@@ -177,7 +178,7 @@ class _PaymentSummaryState extends State<PaymentSummary> {
                 RadioListTile(
                   value: AddressTypes.OnlinePayment,
                   groupValue: myType,
-                  title: const Text("OnlinePayment"),
+                  title: const Text("Online Payment"),
                   onChanged: (AddressTypes? value) {
                     setState(() {
                       myType = value!;

@@ -30,7 +30,7 @@ class ReviewCart extends StatelessWidget {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: const Text("Cart Product"),
-      content: const Text("Are you devete on cartProduct?"),
+      content: const Text("Do you want to delete this product fromt he cart?"),
       actions: [
         cancelButton,
         continueButton,
@@ -52,7 +52,7 @@ class ReviewCart extends StatelessWidget {
     reviewCartProvider!.getReviewCartData();
     return Scaffold(
       bottomNavigationBar: ListTile(
-        title: const Text("Total Aount"),
+        title: const Text("Total Amount"),
         subtitle: Text(
           "\$ ${reviewCartProvider!.getTotalPrice()}",
           style: TextStyle(
@@ -86,8 +86,9 @@ class ReviewCart extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text(
-          "Review Cart",
-          style: TextStyle(color: textColor, fontSize: 18),
+          'Review Cart',
+          style: TextStyle(
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
       body: reviewCartProvider!.getReviewCartDataList.isEmpty

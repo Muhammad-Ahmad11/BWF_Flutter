@@ -58,8 +58,9 @@ class _WishListState extends State<WishList> {
       appBar: AppBar(
         backgroundColor: primaryColor,
         title: const Text(
-          "WishList",
-          style: TextStyle(color: textColor, fontSize: 18),
+          'WishList',
+          style: TextStyle(
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView.builder(

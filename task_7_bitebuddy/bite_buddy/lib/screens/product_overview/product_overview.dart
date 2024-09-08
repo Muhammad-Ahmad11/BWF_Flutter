@@ -138,8 +138,9 @@ class _ProductOverviewState extends State<ProductOverview> {
         backgroundColor: primaryColor,
         iconTheme: const IconThemeData(color: textColor),
         title: const Text(
-          "Product Overview",
-          style: TextStyle(color: textColor),
+          'Product Overview',
+          style: TextStyle(
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
@@ -152,7 +153,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                 children: [
                   ListTile(
                     title: Text(widget.productName!),
-                    subtitle: const Text("\$50"),
+                    subtitle: Text("\$${widget.productPrice}"),
                   ),
                   Container(
                       height: 250,
@@ -203,7 +204,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                           productImage: widget.productImage,
                           productName: widget.productName,
                           productPrice: widget.productPrice,
-                          productUnit: '500 Gram',
+                          productUnit: 'small',
                         ),
                         // Container(
                         //   padding: EdgeInsets.symmetric(
@@ -257,7 +258,7 @@ class _ProductOverviewState extends State<ProductOverview> {
                     height: 20,
                   ),
                   Text(
-                    "of a customer. Wikipedi In marketing, a product is an object or system made available for consumer use; it is anything that can be offered to a market to satisfy the desire or need of a customer. Wikipedi",
+                    "Mozzarella Sticks are a deliciously crispy and golden-fried snack, filled with soft, melted mozzarella cheese that oozes with every bite. These crunchy delights are served with a flavorful marinara sauce, making them the perfect appetizer or snack for anyone craving a cheesy indulgence. Ideal for sharing or enjoying solo, they offer a satisfying combination of crunch and gooey goodness.",
                     style: TextStyle(
                       fontSize: 16,
                       color: textColor,

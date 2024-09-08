@@ -29,7 +29,11 @@ class _SearchState extends State<Search> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text("Search"),
+        title: const Text(
+          'Search',
+          style: TextStyle(
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -61,7 +65,7 @@ class _SearchState extends State<Search> {
                 ),
                 fillColor: const Color(0xffc2c2c2),
                 filled: true,
-                hintText: "Search for items in the store",
+                hintText: "Search items in the store",
                 suffixIcon: const Icon(Icons.search),
               ),
             ),

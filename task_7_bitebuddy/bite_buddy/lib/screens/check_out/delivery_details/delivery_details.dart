@@ -22,7 +22,13 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
     deliveryAddressProvider.getDeliveryAddressData();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Delivery Details"),
+        backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: textColor),
+        title: const Text(
+          'Delivery Details',
+          style: TextStyle(
+              color: textColor, fontSize: 17, fontWeight: FontWeight.bold),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
@@ -88,7 +94,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
                     });
                     return SingleDeliveryItem(
                       address:
-                          "aera, ${e.aera}, street, ${e.street}, society ${e.scoirty}, pincode ${e.pinCode}",
+                          "Area: ${e.aera}, Street: ${e.street}, Society: ${e.scoirty}, PinCode: ${e.pinCode}",
                       title: "${e.firstName} ${e.lastName}",
                       number: e.mobileNo,
                       addressType: e.addressType == "AddressTypes.Home"
